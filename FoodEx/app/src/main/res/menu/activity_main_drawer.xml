@@ -10,10 +10,9 @@
             android:id="@+id/drawer_explore"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Explore" />
-
     </group>
 
-    <item android:title="Accounts">
+    <item android:title="Account">
         <menu>
             <item
                 android:id="@+id/drawer_logout"

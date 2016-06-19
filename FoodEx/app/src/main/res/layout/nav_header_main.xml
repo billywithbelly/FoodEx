@@ -12,29 +12,32 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/drawer_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:src="@android:drawable/sym_def_app_icon" />
 
-    <TextView android:id="@+id/drawer_title"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="FoodEx"
         android:textSize="40dp"
+        android:text="FoodEx"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <TextView android:id="@+id/drawer_subtitle"
+    <TextView
+        android:id="@+id/drawer_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Food Explorer"
-        android:textSize="20dp"/>
-    <TextView android:id="@+id/drawer_heading"
+        android:textSize="30dp"
+        android:text="Food Explorer" />
+
+    <TextView
+        android:id="@+id/drawer_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Make Your Life Delicious"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:text="Make Your Life Delicious" />
 
 </LinearLayout>
