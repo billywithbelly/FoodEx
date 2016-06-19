@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -83,12 +86,20 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.drawer_my_map) {
-            
+            // jump to google map application
+            Uri gmmIntentUri = Uri.parse("geo:0,0?m=your places");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            Toast.makeText(this.getApplicationContext(), "Loading Google Map", Toast.LENGTH_SHORT)
+                    .show();
+            startActivity(mapIntent);
         } else if (id == R.id.drawer_explore) {
             // Search for restaurants nearby
             Uri gmmIntentUri = Uri.parse("geo:0,0?q=restaurants");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
+            Toast.makeText(this.getApplicationContext(), "Searching For Restaurants", Toast.LENGTH_SHORT)
+                    .show();
             startActivity(mapIntent);
         } else if (id == R.id.drawer_logout) {
 
