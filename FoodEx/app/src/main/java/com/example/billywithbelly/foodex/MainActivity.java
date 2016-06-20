@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,42 +28,32 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-  private Context context;
+
+    private Context context;
     ListView list;
     String[] web = {
-            "早午餐",
-            "下午茶",
-            "火鍋",
-            "燒肉",
-            "日式",
-            "韓式",
-            "吃到飽"
+            "基隆市",
+            "台北市",
+            "新北市",
+            "桃園市",
+            "新竹市",
+            "新竹縣",
+            "台中市",
+            "南投縣",
+            "彰化縣",
+            "雲林縣",
+            "嘉義市",
+            "嘉義縣",
+            "台南市",
+            "高雄市",
+            "屏東縣",
+            "宜蘭縣",
+            "花蓮縣",
+            "台東縣",
+            "澎湖縣",
+            "金門縣",
+            "連江縣"
     } ;
-    String[] link = {
-            //brunch
-            "http://www.fonfood.com/%E6%96%B0%E7%AB%B9%E5%B8%82/%E6%97%A9%E5%8D%88%E9%A4%90",
-            //afternoon tea
-            "http://www.fonfood.com/%E6%96%B0%E7%AB%B9%E5%B8%82/%E4%B8%8B%E5%8D%88%E8%8C%B6",
-            //hot pot
-            "http://www.fonfood.com/%E6%96%B0%E7%AB%B9%E5%B8%82/%E7%81%AB%E9%8D%8B",
-            //barbeque
-            "http://www.fonfood.com/%E6%96%B0%E7%AB%B9%E5%B8%82/%E7%87%92%E8%82%89",
-            //japanese
-            "http://www.fonfood.com/%E6%96%B0%E7%AB%B9%E5%B8%82/%E6%97%A5%E5%BC%8F",
-            //korean
-            "http://www.fonfood.com/%E6%96%B0%E7%AB%B9%E5%B8%82/%E9%9F%93%E5%BC%8F",
-            //buffet
-            "http://www.fonfood.com/%E6%96%B0%E7%AB%B9%E5%B8%82/%E5%90%83%E5%88%B0%E9%A3%BD"
-    };
-    Integer[] imageId = {
-            R.drawable.ic_menu_gallery,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_gallery,
-            R.drawable.ic_plusone_medium_off_client,
-            R.drawable.common_signin_btn_icon_disabled_focus_light,
-            R.drawable.common_ic_googleplayservices,
-            R.drawable.ic_menu_slideshow
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +67,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent searchIntent = new Intent();
+                searchIntent.setClass(MainActivity.this, SearchOnGoogle.class);
+                startActivity(searchIntent);
+                Toast.makeText(getApplicationContext(), "Search On Google", Toast.LENGTH_SHORT)
+                        .show();
             }
         });
 
@@ -90,67 +84,25 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        menulist adapter = new
-                menulist(MainActivity.this, web, imageId);
-        list=(ListView)findViewById(R.id.list);
+        locatelist adapter = new
+                locatelist(MainActivity.this, web);
+        list=(ListView)findViewById(R.id.citylist);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent html = new Intent();
-                switch (position)
-                {
-                    case 0:
-                        //brunch
-                        html.setClass(MainActivity.this, HtmlActivity.class)
-                                .putExtra("link", link[position])
-                                .putExtra("sorts", web[position]);
-                        startActivity(html);
-                        break;
-                    case 1:
-                        //afternoon tea
-                        html.setClass(MainActivity.this, HtmlActivity.class)
-                                .putExtra("link", link[position])
-                                .putExtra("sorts", web[position]);
-                        startActivity(html);
-                        break;
-                    case 2:
-                        //hot pot
-                        html.setClass(MainActivity.this, HtmlActivity.class)
-                                .putExtra("link", link[position])
-                                .putExtra("sorts", web[position]);
-                        startActivity(html);
-                        break;
-                    case 3:
-                        //barbeque
-                        html.setClass(MainActivity.this, HtmlActivity.class)
-                                .putExtra("link", link[position])
-                                .putExtra("sorts", web[position]);
-                        startActivity(html);
-                        break;
-                    case 4:
-                        //japanese
-                        html.setClass(MainActivity.this, HtmlActivity.class)
-                                .putExtra("link", link[position])
-                                .putExtra("sorts", web[position]);
-                        startActivity(html);
-                        break;
-                    case 5:
-                        //korean
-                        html.setClass(MainActivity.this, HtmlActivity.class)
-                                .putExtra("link", link[position])
-                                .putExtra("sorts", web[position]);
-                        startActivity(html);
-                        break;
-                    case 6:
-                        //buffet
-                        html.setClass(MainActivity.this, HtmlActivity.class)
-                                .putExtra("link", link[position])
-                                .putExtra("sorts", web[position]);
-                        startActivity(html);
-                        break;
-                }
+                // 建立 Bundle 物件
+               // Bundle location = new Bundle();
+
+                // 寫入資料到 Bundle 中
+              //  location.putInt("num1",position);
+
+                Intent menu = new Intent();
+                menu.setClass(MainActivity.this, MenuActivity.class)
+                .putExtra("num",position);
+                startActivity(menu);
+
             }
         });
     }
@@ -178,11 +130,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -194,22 +141,20 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.drawer_my_map) {
             // jump to google map application
-            Uri gmmIntentUri = Uri.parse("geo:0,0?m=your places");
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-            mapIntent.setPackage("com.google.android.apps.maps");
-            Toast.makeText(this.getApplicationContext(), "Loading Google Map", Toast.LENGTH_SHORT)
-                    .show();
-            startActivity(mapIntent);
-        } else if (id == R.id.drawer_explore) {
-            // Search for restaurants nearby
-            Uri gmmIntentUri = Uri.parse("geo:0,0?q=restaurants");
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=餐廳");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
             Toast.makeText(this.getApplicationContext(), "Searching For Restaurants", Toast.LENGTH_SHORT)
                     .show();
             startActivity(mapIntent);
-        } else if (id == R.id.drawer_logout) {
-
+        } else if (id == R.id.drawer_explore) {
+            // Search for restaurants nearby
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=停車場");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            Toast.makeText(this.getApplicationContext(), "Searching For Parking Lot", Toast.LENGTH_SHORT)
+                    .show();
+            startActivity(mapIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

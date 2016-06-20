@@ -30,7 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HtmlActivity"></activity>
+        <activity android:name=".HtmlActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity
+            android:name=".SearchOnGoogle"
+            android:label="@string/title_activity_search_on_google"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
