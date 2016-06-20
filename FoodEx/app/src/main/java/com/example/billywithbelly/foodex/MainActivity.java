@@ -86,13 +86,18 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.drawer_my_map) {
+            /*
             // jump to google map application
-            Uri gmmIntentUri = Uri.parse("geo:0,0?m=your places");
+            Uri gmmIntentUri = Uri.parse("geo:0,0?m=your+places");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
             Toast.makeText(this.getApplicationContext(), "Loading Google Map", Toast.LENGTH_SHORT)
                     .show();
+            */
+            Intent mapIntent = new Intent(this, MapsActivity.class);
             startActivity(mapIntent);
+            // 導航uri指令
+            // Uri.parse("http://maps.google.com/maps?f=d&saddr=startLat%20startLng&daddr=endLat%20endLng&hl=en");
         } else if (id == R.id.drawer_explore) {
             // Search for restaurants nearby
             Uri gmmIntentUri = Uri.parse("geo:0,0?q=restaurants");

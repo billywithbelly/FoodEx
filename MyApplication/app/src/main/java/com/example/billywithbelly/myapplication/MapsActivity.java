@@ -1,4 +1,4 @@
-package com.example.billywithbelly.foodex;
+package com.example.billywithbelly.myapplication;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
