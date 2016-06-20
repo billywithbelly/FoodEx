@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,31 +28,32 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-  private Context context;
 
-
-
-
+    private Context context;
     ListView list;
     String[] web = {
-            "早午餐",
-            "下午茶",
-            "火鍋",
-            "燒肉",
-            "日式",
-            "韓式",
-            "吃到飽"
+            "基隆市",
+            "台北市",
+            "新北市",
+            "桃園市",
+            "新竹市",
+            "新竹縣",
+            "台中市",
+            "南投縣",
+            "彰化縣",
+            "雲林縣",
+            "嘉義市",
+            "嘉義縣",
+            "台南市",
+            "高雄市",
+            "屏東縣",
+            "宜蘭縣",
+            "花蓮縣",
+            "台東縣",
+            "澎湖縣",
+            "金門縣",
+            "連江縣"
     } ;
-    Integer[] imageId = {
-            R.drawable.ic_menu_gallery,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_gallery,
-            R.drawable.ic_plusone_medium_off_client,
-            R.drawable.common_signin_btn_icon_disabled_focus_light,
-            R.drawable.common_ic_googleplayservices,
-            R.drawable.ic_menu_slideshow
-
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,36 +81,28 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        menulist adapter = new
-                menulist(MainActivity.this, web, imageId);
-        list=(ListView)findViewById(R.id.list);
+        locatelist adapter = new
+                locatelist(MainActivity.this, web);
+        list=(ListView)findViewById(R.id.citylist);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if(position==3)
-                {
-                    Intent bbq = new Intent();
-                    bbq.setClass(MainActivity.this, BBQActivity.class);
-                    startActivity(bbq);
-                   // Toast.makeText(MainActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-                }
+                // 建立 Bundle 物件
+               // Bundle location = new Bundle();
 
+                // 寫入資料到 Bundle 中
+              //  location.putInt("num1",position);
+
+                Intent menu = new Intent();
+                menu.setClass(MainActivity.this, MenuActivity.class)
+                .putExtra("num",position);
+                startActivity(menu);
 
             }
         });
-
     }
-
-
-
-
-
-
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
