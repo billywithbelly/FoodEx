@@ -73,7 +73,7 @@ public class MenuActivity extends AppCompatActivity {
 
           Intent intent = this.getIntent();
           int location = intent.getIntExtra("num",0);
-          switch (location)
+          switch (location+1)
           {
               case 0: url+="基隆市/";break;
               case 1: url+="台北市/";break;
