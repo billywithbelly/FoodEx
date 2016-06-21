@@ -21,40 +21,7 @@ public class MenuActivity extends AppCompatActivity {
             "韓式",
             "吃到飽"
     } ;
-    /*String[][] link = {
-            {
-                    //brunch
-                    "http://www.fonfood.com/基隆市/早午餐",
-                    //afternoon tea
-                    "http://www.fonfood.com/基隆市/下午茶",
-                    //hot pot
-                    "http://www.fonfood.com/基隆市/火鍋",
-                    //barbeque
-                    "http://www.fonfood.com/基隆市/燒肉",
-                    //japanese
-                    "http://www.fonfood.com/基隆市/日式",
-                    //korean
-                    "http://www.fonfood.com/基隆市/韓式",
-                    //buffet
-                    "http://www.fonfood.com/基隆市/吃到飽"
-            },
-            {
-                    //brunch
-                    "http://www.fonfood.com/基隆市/早午餐",
-                    //afternoon tea
-                    "http://www.fonfood.com/基隆市/下午茶",
-                    //hot pot
-                    "http://www.fonfood.com/基隆市/火鍋",
-                    //barbeque
-                    "http://www.fonfood.com/基隆市/燒肉",
-                    //japanese
-                    "http://www.fonfood.com/基隆市/日式",
-                    //korean
-                    "http://www.fonfood.com/基隆市/韓式",
-                    //buffet
-                    "http://www.fonfood.com/基隆市/吃到飽"
-            },
-    };*/
+
     Integer[] imageId = {
             R.drawable.ic_menu_gallery,
             R.drawable.ic_menu_camera,

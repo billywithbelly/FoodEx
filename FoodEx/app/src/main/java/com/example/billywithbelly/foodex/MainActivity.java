@@ -89,12 +89,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // 建立 Bundle 物件
-               // Bundle location = new Bundle();
-
-                // 寫入資料到 Bundle 中
-              //  location.putInt("num1",position);
-
                 Intent menu = new Intent();
                 menu.setClass(MainActivity.this, MenuActivity.class)
                 .putExtra("num",position);
