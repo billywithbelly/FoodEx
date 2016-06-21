@@ -24,6 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.app.assist.AssistContent;
+import android.app.SharedElementCallback;
+import android.os.PersistableBundle;
+import android.view.SearchEvent;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,11 +71,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent searchIntent = new Intent();
-                searchIntent.setClass(MainActivity.this, SearchOnGoogle.class);
-                startActivity(searchIntent);
                 Toast.makeText(getApplicationContext(), "Search On Google", Toast.LENGTH_SHORT)
                         .show();
+                Intent searchIntent = new Intent()
+                        .setClass(MainActivity.this, SearchOnGoogle.class);
+                startActivity(searchIntent);
             }
         });
 
@@ -92,12 +96,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // 建立 Bundle 物件
-               // Bundle location = new Bundle();
-
-                // 寫入資料到 Bundle 中
-              //  location.putInt("num1",position);
-
                 Intent menu = new Intent();
                 menu.setClass(MainActivity.this, MenuActivity.class)
                 .putExtra("num",position);
@@ -141,7 +139,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.drawer_my_map) {
             // jump to google map application
-            Uri gmmIntentUri = Uri.parse("geo:0,0?q=餐廳");
+            Uri gmmIntentUri = Uri.parse("geo:0,0?m=餐廳");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
             Toast.makeText(this.getApplicationContext(), "Searching For Restaurants", Toast.LENGTH_SHORT)
@@ -152,7 +150,7 @@ public class MainActivity extends AppCompatActivity
             Uri gmmIntentUri = Uri.parse("geo:0,0?q=停車場");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
-            Toast.makeText(this.getApplicationContext(), "Searching For Parking Lot", Toast.LENGTH_SHORT)
+            Toast.makeText(this.getApplicationContext(), "Searching For Parking Lots", Toast.LENGTH_SHORT)
                     .show();
             startActivity(mapIntent);
         }

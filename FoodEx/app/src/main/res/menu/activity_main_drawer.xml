@@ -9,7 +9,7 @@
         <item
             android:id="@+id/drawer_explore"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="搜尋停車場" />
+            android:title="搜尋停出場" />
     </group>
 
 </menu>

@@ -21,40 +21,7 @@ public class MenuActivity extends AppCompatActivity {
             "韓式",
             "吃到飽"
     } ;
-    /*String[][] link = {
-            {
-                    //brunch
-                    "http://www.fonfood.com/基隆市/早午餐",
-                    //afternoon tea
-                    "http://www.fonfood.com/基隆市/下午茶",
-                    //hot pot
-                    "http://www.fonfood.com/基隆市/火鍋",
-                    //barbeque
-                    "http://www.fonfood.com/基隆市/燒肉",
-                    //japanese
-                    "http://www.fonfood.com/基隆市/日式",
-                    //korean
-                    "http://www.fonfood.com/基隆市/韓式",
-                    //buffet
-                    "http://www.fonfood.com/基隆市/吃到飽"
-            },
-            {
-                    //brunch
-                    "http://www.fonfood.com/基隆市/早午餐",
-                    //afternoon tea
-                    "http://www.fonfood.com/基隆市/下午茶",
-                    //hot pot
-                    "http://www.fonfood.com/基隆市/火鍋",
-                    //barbeque
-                    "http://www.fonfood.com/基隆市/燒肉",
-                    //japanese
-                    "http://www.fonfood.com/基隆市/日式",
-                    //korean
-                    "http://www.fonfood.com/基隆市/韓式",
-                    //buffet
-                    "http://www.fonfood.com/基隆市/吃到飽"
-            },
-    };*/
+
     Integer[] imageId = {
             R.drawable.ic_menu_gallery,
             R.drawable.ic_menu_camera,
@@ -75,7 +42,8 @@ public class MenuActivity extends AppCompatActivity {
           int location = intent.getIntExtra("num",0);
           switch (location+1)
           {
-              case 0: url+="基隆市/";break;
+              //http://www.fonfood.com/%E5%9F%BA%E9%9A%86%E5%B8%82/%E6%97%A9%E5%8D%88%E9%A4%90
+              case 0: url+="%E5%9F%BA%E9%9A%86%E5%B8%82/";break;
               case 1: url+="台北市/";break;
               case 2: url+="新北市/";break;
               case 3: url+="桃園市/";break;
@@ -113,7 +81,7 @@ public class MenuActivity extends AppCompatActivity {
                     case 0:
                         //brunch
                         html.setClass(MenuActivity.this, HtmlActivity.class)
-                                .putExtra("link", url+"早午餐")
+                                .putExtra("link", url+"%E6%97%A9%E5%8D%88%E9%A4%90")
                                 .putExtra("sorts", web[position]);
                         startActivity(html);
                         break;
