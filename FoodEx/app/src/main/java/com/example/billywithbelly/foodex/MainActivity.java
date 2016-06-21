@@ -28,6 +28,7 @@ import android.app.assist.AssistContent;
 import android.app.SharedElementCallback;
 import android.os.PersistableBundle;
 import android.view.SearchEvent;
+import com.facebook.FacebookSdk;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -153,6 +154,10 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this.getApplicationContext(), "Searching For Parking Lots", Toast.LENGTH_SHORT)
                     .show();
             startActivity(mapIntent);
+        } else if (id == R.id.account) {
+            Intent signInIntent = new Intent()
+                    .setClass(MainActivity.this, LoginActivity.class);
+            startActivity(signInIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

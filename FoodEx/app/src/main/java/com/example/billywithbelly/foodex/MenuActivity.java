@@ -23,7 +23,7 @@ public class MenuActivity extends AppCompatActivity {
     } ;
 
     Integer[] imageId = {
-            R.drawable.ic_menu_gallery,
+            R.drawable.bb,
             R.drawable.ic_menu_camera,
             R.drawable.ic_menu_gallery,
             R.drawable.ic_plusone_medium_off_client,
@@ -40,10 +40,10 @@ public class MenuActivity extends AppCompatActivity {
 
           Intent intent = this.getIntent();
           int location = intent.getIntExtra("num",0);
-          switch (location+1)
+          switch (location)
           {
               //http://www.fonfood.com/%E5%9F%BA%E9%9A%86%E5%B8%82/%E6%97%A9%E5%8D%88%E9%A4%90
-              case 0: url+="%E5%9F%BA%E9%9A%86%E5%B8%82/";break;
+              case 0: url+="基隆市/";break;
               case 1: url+="台北市/";break;
               case 2: url+="新北市/";break;
               case 3: url+="桃園市/";break;
@@ -81,7 +81,7 @@ public class MenuActivity extends AppCompatActivity {
                     case 0:
                         //brunch
                         html.setClass(MenuActivity.this, HtmlActivity.class)
-                                .putExtra("link", url+"%E6%97%A9%E5%8D%88%E9%A4%90")
+                                .putExtra("link", url+"早午餐")
                                 .putExtra("sorts", web[position]);
                         startActivity(html);
                         break;

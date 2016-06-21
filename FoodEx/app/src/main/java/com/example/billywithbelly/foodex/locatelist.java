@@ -33,7 +33,6 @@ public class locatelist extends ArrayAdapter<String> {
 
         txtTitle.setText(web[position]);
 
-        ;
         return rowView;
     }
 }

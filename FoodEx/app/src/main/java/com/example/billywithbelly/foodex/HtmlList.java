@@ -1,10 +1,13 @@
 package com.example.billywithbelly.foodex;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -12,21 +15,25 @@ import android.widget.TextView;
  */
 public class HtmlList extends ArrayAdapter<String> {
 
-    private final Activity context;
-    private final String[] web;
+    private Activity context;
+    private String[] web;
+    private Bitmap[] graph;
 
-    public HtmlList(Activity context,String[] web) {
+    public HtmlList(Activity context, String[] web, Bitmap[] graph) {
         super(context, R.layout.activity_html, web);
         this.context = context;
         this.web = web;
+        this.graph = graph;
     }
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.list_activity, null, true);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.html_img);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.html_txt);
-
+        
         txtTitle.setText(web[position]);
+        imageView.setImageBitmap(graph[position]);
         return rowView;
     }
 }
