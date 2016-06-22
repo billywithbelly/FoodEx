@@ -2,12 +2,14 @@ package com.example.billywithbelly.foodex;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -48,7 +50,7 @@ import static com.example.billywithbelly.foodex.R.drawable.bb;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private static boolean activityFlag;
     private int floatButtonFlag;
     private Context context;
     ListView list;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityFlag = false;
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -119,7 +122,7 @@ public class MainActivity extends AppCompatActivity
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent
                         .putExtra(Intent.EXTRA_TEXT,
-                                "<---YOUR TEXT HERE--->.");
+                                "吃吃吃吃吃摟～");
                 sendIntent.setType("text/plain");
                 sendIntent.setPackage("com.facebook.orca");
                 try
@@ -164,7 +167,6 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            //super.onBackPressed();
         }
     }
 
@@ -198,6 +200,7 @@ public class MainActivity extends AppCompatActivity
             mapIntent.setPackage("com.google.android.apps.maps");
             Toast.makeText(this.getApplicationContext(), "Searching For Restaurants", Toast.LENGTH_SHORT)
                     .show();
+            activityFlag = true;
             startActivity(mapIntent);
         } else if (id == R.id.drawer_explore) {
             // Search for restaurants nearby
@@ -206,15 +209,30 @@ public class MainActivity extends AppCompatActivity
             mapIntent.setPackage("com.google.android.apps.maps");
             Toast.makeText(this.getApplicationContext(), "Searching For Parking Lots", Toast.LENGTH_SHORT)
                     .show();
+            activityFlag = true;
             startActivity(mapIntent);
         } else if (id == R.id.account) {
             Intent signInIntent = new Intent()
                     .setClass(MainActivity.this, LoginActivity.class);
+            activityFlag = true;
             startActivity(signInIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
+    }
+
+    @Override
+    protected void onRestart() {
+        if (activityFlag) {
+            Intent i = new Intent();
+            i.setClass(MainActivity.this, MainActivity.class);
+            activityFlag = false;
+            startActivity(i);
+        }else {
+            super.onRestart();
+        }
     }
 }

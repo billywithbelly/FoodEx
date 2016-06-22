@@ -1,6 +1,8 @@
 package com.example.billywithbelly.foodex;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,6 @@ public class locatelist extends ArrayAdapter<String> {
         super(context, R.layout.list_locate, web);
         this.context = context;
         this.web = web;
-
 
     }
     @Override

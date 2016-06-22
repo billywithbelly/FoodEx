@@ -10,12 +10,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.SearchEvent;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -50,6 +52,28 @@ public class HtmlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_html);
 
         new Description().execute();
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.sort_fab);
+        assert fab != null;
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent
+                        .putExtra(Intent.EXTRA_TEXT,
+                                "來吃" + sorts + "摟～");
+                sendIntent.setType("text/plain");
+                sendIntent.setPackage("com.facebook.orca");
+                try
+                {
+                    startActivity(sendIntent);
+                }
+                catch (android.content.ActivityNotFoundException ex)
+                {
+                    //ToastHelper.MakeShortText("Please Install Facebook Messenger");
+                }
+            }
+        });
     }
 
     // Description AsyncTask
