@@ -2,6 +2,10 @@ package com.example.billywithbelly.foodex;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +37,15 @@ public class HtmlList extends ArrayAdapter<String> {
         TextView txtTitle = (TextView) rowView.findViewById(R.id.html_txt);
         
         txtTitle.setText(web[position]);
-        imageView.setImageBitmap(graph[position]);
+        //圖片設成圓形的～
+        Bitmap circleBitmap = Bitmap.createBitmap(graph[position].getWidth(), graph[position].getHeight(), Bitmap.Config.ARGB_8888);
+        BitmapShader shader = new BitmapShader(graph[position],  Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        Paint paint = new Paint();
+        paint.setShader(shader);
+        Canvas c = new Canvas(circleBitmap);
+        c.drawCircle(graph[position].getWidth()/2, graph[position].getHeight()/2, graph[position].getWidth()/2, paint);
+        //
+        imageView.setImageBitmap(circleBitmap);
         return rowView;
     }
 }

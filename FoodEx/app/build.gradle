@@ -31,4 +31,7 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.0.0'
     compile 'org.jsoup:jsoup:1.9.2'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'de.hdodenhof:circleimageview:1.2.1'
+    compile 'com.github.clans:fab:1.6.0'
+
 }

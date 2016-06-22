@@ -35,9 +35,9 @@ public class HtmlActivity extends AppCompatActivity {
     String sorts;
     ProgressDialog mProgressDialog;
     ListView htmlList;
-    String[] a;
+    String[] a = new String[15];
     String[] web;
-    String[] AfterSplit;
+    String[] AfterSplit = new String[15];
     Bitmap[] AfterFetched = new Bitmap[15];
 
     @Override

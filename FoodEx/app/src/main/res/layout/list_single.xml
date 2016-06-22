@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="horizontal">
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <TableRow>
+    android:orientation="horizontal"
+    android:background="@drawable/frame1"
+    >
+
+    <TableRow
+
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
         <ImageView
             android:id="@+id/img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:id="@+id/txt"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="wrap_content"
-            android:layout_height="50dp" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_marginTop="24dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/circleView"
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/txt"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:textColor="#00AAAA"
+            android:typeface="monospace"
+            android:layout_weight="200"
+            android:textSize = "25sp"
+            android:layout_column="6"/>
 
     </TableRow>
-
 </TableLayout>

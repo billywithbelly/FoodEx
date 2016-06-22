@@ -23,13 +23,13 @@ public class MenuActivity extends AppCompatActivity {
     } ;
 
     Integer[] imageId = {
-            R.drawable.bb,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_gallery,
-            R.drawable.ic_plusone_medium_off_client,
-            R.drawable.common_signin_btn_icon_disabled_focus_light,
-            R.drawable.common_ic_googleplayservices,
-            R.drawable.ic_menu_slideshow
+            R.drawable.brunch2,
+            R.drawable.afternoontea,
+            R.drawable.hot_pot,
+            R.drawable.bbq2,
+            R.drawable.japan,
+            R.drawable.korea,
+            R.drawable.buffet
     };
     String url = "http://www.fonfood.com/";
     String url1;
