@@ -23,13 +23,13 @@ public class MenuActivity extends AppCompatActivity {
     } ;
 
     Integer[] imageId = {
-            R.drawable.ic_menu_gallery,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_gallery,
-            R.drawable.ic_plusone_medium_off_client,
-            R.drawable.common_signin_btn_icon_disabled_focus_light,
-            R.drawable.common_ic_googleplayservices,
-            R.drawable.ic_menu_slideshow
+            R.drawable.brunch2,
+            R.drawable.afternoontea,
+            R.drawable.hot_pot,
+            R.drawable.bbq2,
+            R.drawable.japan,
+            R.drawable.korea,
+            R.drawable.buffet
     };
     String url = "http://www.fonfood.com/";
     String url1;
@@ -40,8 +40,9 @@ public class MenuActivity extends AppCompatActivity {
 
           Intent intent = this.getIntent();
           int location = intent.getIntExtra("num",0);
-          switch (location+1)
+          switch (location)
           {
+              //http://www.fonfood.com/%E5%9F%BA%E9%9A%86%E5%B8%82/%E6%97%A9%E5%8D%88%E9%A4%90
               case 0: url+="基隆市/";break;
               case 1: url+="台北市/";break;
               case 2: url+="新北市/";break;

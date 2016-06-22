@@ -1,6 +1,8 @@
 package com.example.billywithbelly.foodex;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ public class menulist extends ArrayAdapter<String> {
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
         txtTitle.setText(web[position]);
+
 
         imageView.setImageResource(imageId[position]);
         return rowView;

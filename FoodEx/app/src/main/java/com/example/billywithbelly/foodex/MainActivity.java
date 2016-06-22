@@ -24,6 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.app.assist.AssistContent;
+import android.app.SharedElementCallback;
+import android.os.PersistableBundle;
+import android.view.SearchEvent;
+import com.facebook.FacebookSdk;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,8 +72,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Toast.makeText(getApplicationContext(), "Search On Google", Toast.LENGTH_SHORT)
+                        .show();
+                Intent searchIntent = new Intent()
+                        .setClass(MainActivity.this, SearchOnGoogle.class);
+                startActivity(searchIntent);
             }
         });
 
@@ -121,11 +129,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -137,22 +140,24 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.drawer_my_map) {
             // jump to google map application
-            Uri gmmIntentUri = Uri.parse("geo:0,0?m=your places");
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-            mapIntent.setPackage("com.google.android.apps.maps");
-            Toast.makeText(this.getApplicationContext(), "Loading Google Map", Toast.LENGTH_SHORT)
-                    .show();
-            startActivity(mapIntent);
-        } else if (id == R.id.drawer_explore) {
-            // Search for restaurants nearby
-            Uri gmmIntentUri = Uri.parse("geo:0,0?q=restaurants");
+            Uri gmmIntentUri = Uri.parse("geo:0,0?m=餐廳");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
             Toast.makeText(this.getApplicationContext(), "Searching For Restaurants", Toast.LENGTH_SHORT)
                     .show();
             startActivity(mapIntent);
-        } else if (id == R.id.drawer_logout) {
-
+        } else if (id == R.id.drawer_explore) {
+            // Search for restaurants nearby
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=停車場");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            Toast.makeText(this.getApplicationContext(), "Searching For Parking Lots", Toast.LENGTH_SHORT)
+                    .show();
+            startActivity(mapIntent);
+        } else if (id == R.id.account) {
+            Intent signInIntent = new Intent()
+                    .setClass(MainActivity.this, LoginActivity.class);
+            startActivity(signInIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

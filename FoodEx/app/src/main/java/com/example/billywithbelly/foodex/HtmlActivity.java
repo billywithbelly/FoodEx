@@ -1,12 +1,19 @@
 package com.example.billywithbelly.foodex;
 
 import android.app.ProgressDialog;
+import android.app.assist.AssistContent;
+import android.app.SharedElementCallback;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.SearchEvent;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -16,6 +23,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by billywithbelly on 6/20/16.
@@ -27,13 +37,15 @@ public class HtmlActivity extends AppCompatActivity {
     ListView htmlList;
     String[] a;
     String[] web;
-    String[] AfterSplit = null;
+    String[] AfterSplit;
+    Bitmap[] AfterFetched = new Bitmap[15];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = this.getIntent();
         url = intent.getStringExtra("link");
         sorts = intent.getStringExtra("sorts");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_html);
 
@@ -58,14 +70,31 @@ public class HtmlActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
+
                 Document document = Jsoup.connect(url).get();
                 Elements description = document
                         .select("meta[name=description]");
                 Elements website_search = document
                         .select("div.titleBlock a.storeTitle");
+
                 for (Element link : website_search) {
                     website += " " + link.attr("href");
                     AfterSplit = website.split(" ");
+                }
+                //from AfterSplit 1 to 9
+                //from AfterFetched 1 to 9
+                for (int i=0; i<AfterSplit.length-1; i++) {
+                    Document D = Jsoup.connect(AfterSplit[i+1])
+                            .get();
+                    Elements img = D.select("div[class=infoImage] img[src]");
+                    String imgSrc = img.attr("src");
+                    //InputStream inputUrl = new java.net.URL(imgSrc).openStream();
+                    Log.d("image to parse", "" + imgSrc);
+                    AfterFetched[i] = getBitmapFromUrl(imgSrc);
+
+                    Log.d("AfterSplit", "" + AfterSplit[i+1]);
+                    //Log.d("image", "" + AfterFetched[i].toString());
+                    Log.d("", "");
                 }
                 desc = description.attr("content");
                 a = desc.split("、");
@@ -80,7 +109,7 @@ public class HtmlActivity extends AppCompatActivity {
 
             web = a;
             HtmlList adapter = new
-                    HtmlList(HtmlActivity.this, web);
+                    HtmlList(HtmlActivity.this, web, AfterFetched);
             htmlList = (ListView) findViewById(R.id.activity_html);
             htmlList.setAdapter(adapter);
             htmlList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,11 +118,25 @@ public class HtmlActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
                     Intent ie = new Intent(Intent.ACTION_VIEW, Uri.parse(AfterSplit[position + 1]));
-
+                    //Log.d("AfterSplit", "" + AfterSplit[1]);
                     startActivity(ie);
                 }
             });
             mProgressDialog.dismiss();
+        }
+        public Bitmap getBitmapFromUrl (String src) {
+            try {
+                URL url = new URL(src);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.connect();
+
+                InputStream input = conn.getInputStream();
+                Bitmap bmp = BitmapFactory.decodeStream(input);
+                return bmp;
+            }catch (IOException E) {
+                E.printStackTrace();
+                return null;
+            }
         }
     }
 }
