@@ -2,6 +2,15 @@ package com.example.billywithbelly.foodex;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +42,7 @@ public class MenuActivity extends AppCompatActivity {
     };
     String url = "http://www.fonfood.com/";
     String url1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +76,10 @@ public class MenuActivity extends AppCompatActivity {
               case 20: url+="金門縣/";break;
               case 21: url+="連江縣/";break;
           }
-
+        //
+        Resources res = getResources();
+        Bitmap bmp = BitmapFactory.decodeResource(res, R.drawable.brunch2);
+        //
         menulist adapter = new
                 menulist(MenuActivity.this, web, imageId);
         list=(ListView)findViewById(R.id.list);
@@ -131,4 +144,24 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float roundPx) {
+        int w = bitmap.getWidth();
+        int h = bitmap.getHeight();
+        Bitmap output = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, w, h);
+        final RectF rectF = new RectF(rect);
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
+    }
+
 }
+
