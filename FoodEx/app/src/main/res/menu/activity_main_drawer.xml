@@ -13,14 +13,5 @@
             android:title="搜尋停車場" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/account"
-                android:icon="@drawable/ic_menu_share"
-                android:title="社交" />
-
-        </menu>
-    </item>
 
 </menu>

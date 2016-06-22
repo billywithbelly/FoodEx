@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -211,11 +212,6 @@ public class MainActivity extends AppCompatActivity
                     .show();
             activityFlag = true;
             startActivity(mapIntent);
-        } else if (id == R.id.account) {
-            Intent signInIntent = new Intent()
-                    .setClass(MainActivity.this, LoginActivity.class);
-            activityFlag = true;
-            startActivity(signInIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -226,13 +222,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onRestart() {
-        if (activityFlag) {
-            Intent i = new Intent();
-            i.setClass(MainActivity.this, MainActivity.class);
-            activityFlag = false;
-            startActivity(i);
-        }else {
+
             super.onRestart();
-        }
+
     }
 }
