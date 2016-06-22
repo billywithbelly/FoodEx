@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@drawable/frame">
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <TableRow>
+
 
 
         <TextView
@@ -15,7 +17,9 @@
             android:textColor="#009FCC"
             android:typeface="monospace"
             android:layout_weight="200"
-            android:textSize = "45sp" />
+            android:textSize = "20sp"
+            android:text="haha"
+            android:gravity="center"/>
 
     </TableRow>
 
